@@ -61,7 +61,7 @@ public class MailboxTileEntity extends LockableLootTileEntity {
 		super.save(nbt);
 		ItemStackHelper.saveAllItems(nbt, inventory);
 		nbt.putString("Owner", owner == null ? "" : owner);
-		nbt.putString("OwnerDisplayName", ownerDisplayName);
+		nbt.putString("OwnerDisplayName", ownerDisplayName == null ? "" : ownerDisplayName);
 		return nbt;
 	}
 
@@ -72,6 +72,7 @@ public class MailboxTileEntity extends LockableLootTileEntity {
 		ItemStackHelper.loadAllItems(nbt, inventory);
 		owner = nbt.getString("Owner");
 		ownerDisplayName = nbt.getString("OwnerDisplayName");
+		if(ownerDisplayName.equals("")) ownerDisplayName = null;
 	}
 
 	@Override
